@@ -1,37 +1,21 @@
-## Welcome to GitHub Pages
+## Time Sync Study
 
-You can use the [editor on GitHub](https://github.com/milo168/ECE209TimeStamp/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+This is the project repository website for UCLA ECE 209 AS-2 Winter. The project will be focusing on mitigating faulty time stamps on data which can cause accuracy loss on learning models.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Deliverables
 
-### Markdown
+Inaccurate time stamps on data can cause accuracy loss on models that try to classify a series of actions. Many works have focused on training models that try to be resilient to bad time stamps, but these models can only learn delays up to a certain amount. Other works try to tackle the source of the problem and minimize the error by providing a more accurate clock.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### Approach
 
-```markdown
-Syntax highlighted code block
+### Implementation and Results
 
-# Header 1
-## Header 2
-### Header 3
+### Prior Work
 
-- Bulleted
-- List
+### Analysis and Future Direction
 
-1. Numbered
-2. List
+### Contribution
 
-**Bold** and _Italic_ and `Code` text
+### PDF
 
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/milo168/ECE209TimeStamp/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+### References
