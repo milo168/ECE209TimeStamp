@@ -16,7 +16,7 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 #### Stretch Objectives
 - Try to propose new methods based on them with better performance across multiple metrics
 
-### Approach
+### Approach (to be updated dynamically)
 #### Propose a common metric to handle their different kinds of outputs to beter compare them
 Though SyncWISE and TimeAwareness try to handle similar time synchronization errors across multimodal data, they have different specific aim, generate different kinds of outputs, and use different metrics to evaluate their methods. Therefore, to compare these two methods, we first need to propose a common metric to show their performance under the same criteria. 
 
@@ -60,18 +60,24 @@ Approach SyncWISE + TimeAwareness:
 - Testing: introduce artificial shifts in test data, correct using SyncWISE, and then classify to check the accuracy
 
 #### Try to propose new methods based on them with better performance across multiple metrics
+In TimeAwareness, they use a simple model with two convolutional layers and several fully connected layers. To improve the capacity of the model, we can try more complex architectures like LSTM to get better performance across multiple metrics. 
 
+### Implementation and Results (to be updated dynamically)
+#### Re-run SyncWISE and TimeAwareness
+Though they provides most codes on their GitHub, it took some time to debug and re-run their codes. Finally, we get similar results as in their paper.
 
+SyncWISE：
 
-### Implementation and Results
+TimeAwareness：
+
 
 ### Prior Work
 
-### Analysis and Future Direction
+### Analysis and Future Direction (to be updated dynamically)
 
-### Project Timeline 
+### Project Timeline (to be updated dynamically)
 
-### Contribution
+### Contribution (to be updated dynamically)
 
 ### PDF
 
