@@ -16,6 +16,7 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 
 #### Stretch Objectives
 - Try to propose new methods based on them with better performance across multiple metrics
+- Try to propose deep learning based methods which can predict the time shifts 
 
 ### Approach
 #### Propose a common metric to handle their different kinds of outputs to beter compare them
