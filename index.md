@@ -20,25 +20,21 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 ### Approach
 #### Propose a common metric to handle their different kinds of outputs to beter compare them
 
-Approach Baseline: 
-- Training+Validation without data augmentation (domain randomization)
-- Testing: subject test data to artificial shifts, no fixing, and then classify
+Baseline: 
+- Training + Validation without data augmentation (domain randomization)
+- Testing: introduce artificial shifts in test data, without SyncWISE correction, and then classify to check the accuracy
 
-Approach 1: 
-- Training+Validation without data augmentation (domain randomization)
-  - Use syncwise to realign data and labels first (But SyncWISE may be inaccurate and will introduce shifts
-  - Training data may be not sync, except that make sure the data are sync 
-  - Need to use syncwise to align the testing data too
-- Testing: subject test data to artificial shifts, then fix using syncwise, and then classify
-  - The classifier here is to show the effect of syncwise
-  - (Fix: Syncwise, there was another approach in Syncwise paper
+Approach 1 (SyncWISE): 
+- Training + Validation without data augmentation (domain randomization)
+- Testing: introduce artificial shifts in test data, correct using SyncWISE, and then classify to check the accuracy
+  - The classifier here is to show the effects of SyncWISE
+  - Also try to run another cross-correlation based approach (baseline method in SyncWISE paper)
 		
-Approach 2:
-- Training+Validation with data augmentation (domain randomization)
-  - I.e. you’d expand the training and validation data with additional copies that have random shifts. 
-- Testing: subject test data to artificial shifts, no fixing, and then classify
+Approach 2 (TimeAwareness):
+- Training + Validation with data augmentation (domain randomization)
+  - Expand the training and validation data with additional copies that have random shifts
+- Testing: introduce artificial shifts in test data, without SyncWISE correction, and then classify to check the accuracy
   - The classifier here is to show the effect of data augmentation
-
 
 
 ### Implementation and Results
