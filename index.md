@@ -16,12 +16,16 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 
 #### Stretch Objectives
 - Try to propose new methods based on them with better performance across multiple metrics
-- Try to propose deep learning based methods which can predict the time shifts 
 
 ### Approach
 #### Propose a common metric to handle their different kinds of outputs to beter compare them
+Though SyncWISE and TimeAwareness try to handle similar time synchronization errors across multimodal data, they generate different kinds of outputs and use different metrics to evaluate their methods. Therefore, to compare these two methods, we first need to propose a common metric to show their performance under the same criteria. 
 
-Baseline: 
+Window Induced Shift Estimation method for Synchronization (SyncWISE) uses the cross-correlation of multimodal data to estimate the offsets. It outputs the time shifts between different sensor data, so they use two metrics to evaluate SyncWISe's performance: 1) the average of the absolute value of the synchronization error, $Eavg$, and 2) the percentage of clips which are synchronized to an offset error of less than $n$ ms, $Pv-n$. TimeAwareness induces time synchronization errors when training the deep learning models to improve models' robustness. They add artificial shifts in test data and check the models' test accuracies to evaluate their method. Here, we first train a baseline model, and then add SyncWISE (when testing) and TimeAwareness (when training) separately, and use models' accuracies as the metric to show their effect and performance.
+
+The details of training and testing of these three approaches are shown below. We will use the same original model architecture and dataset.
+
+Approach Baseline: 
 - Training + Validation without data augmentation (domain randomization)
 - Testing: introduce artificial shifts in test data, without SyncWISE correction, and then classify to check the accuracy
 
