@@ -43,7 +43,7 @@ Approach 2 (TimeAwareness):
   - The classifier here is to show the effect of data augmentation
 
 #### Explore how they generalize on different multimodal data
-Although SyncWISE and TimeAwareness claim that their algorithm can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. TimeAwareness use audio and IMU data from CMActivities dataset. 
+Although SyncWISE and TimeAwareness claim that their algorithm can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. TimeAwareness uses audio and IMU data from CMActivities dataset. So it will be interesting to explore how they generalize on different multimodal data. Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we plan to explore video-accelerometry and audio-IMU data on them first.
 
 #### Explore how long time shift they can handle
 
