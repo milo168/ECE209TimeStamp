@@ -72,6 +72,12 @@ TimeAwareness：
 
 
 ### Prior Work
+1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
+
+2. 
+
+TimeAwareness：
+
 
 ### Analysis and Future Direction (to be updated dynamically)
 
@@ -82,3 +88,18 @@ TimeAwareness：
 ### PDF
 
 ### References
+1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
+- Paper: https://dl.acm.org/doi/abs/10.1145/3411824
+- Website: https://github.com/HAbitsLab/SyncWISE
+
+2. Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
+- Paper: https://ieeexplore.ieee.org/document/9097594
+- Website: https://github.com/nesl/CMActivities-DataSet
+
+3. Automated Synchronization of Driving Data Using Vibration and Steering Events
+- Paper: https://arxiv.org/abs/1510.06113
+
+4. 
+
+
+
