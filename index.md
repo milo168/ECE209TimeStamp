@@ -43,9 +43,15 @@ Approach 2 (TimeAwareness):
   - The classifier here is to show the effect of data augmentation
 
 #### Explore how they generalize on different multimodal data
-Although SyncWISE and TimeAwareness claim that their algorithm can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. TimeAwareness uses audio and IMU data from CMActivities dataset. So it will be interesting to explore how they generalize on different multimodal data. Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we plan to explore video-accelerometry and audio-IMU data on them first.
+Although SyncWISE and TimeAwareness claim that their algorithm can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. TimeAwareness uses audio and IMU data from CMActivities dataset. So it will be interesting to explore how they generalize on different multimodal data. 
 
-#### Explore how long time shift they can handle
+Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we plan to explore video-accelerometry and audio-IMU data on them first.
+
+#### Explore how long time shift they can handle and how short data they need
+
+TimeAwareness introduce at most 1000ms and 2000ms shifts in their 10-Sec training and testing data respectively, and it can preserve classifier accuracy at most 600ms of timing error. For SyncWISE, they generate a synthetic testing dataset based on S2S-Sync dataset by adding random offsets in the range [-3 sec, 3 sec]. And the original offsets of S2S-Sync dataset have a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms. S2S-Sync dataset have 163 video clips of 45.2 hours, which means the average period of each clip is 998.28s.
+
+Figure 7 TimeAwareness
 
 #### Explore how short data they need
 
