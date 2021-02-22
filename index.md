@@ -13,6 +13,7 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 - Explore how long time shift they can handle
 - Explore how short data they need
 - Explore their tolerance to noise
+- Explore to combine SyncWISE and TimeAwareness and evaluate the performance
 
 #### Stretch Objectives
 - Try to propose new methods based on them with better performance across multiple metrics
@@ -34,7 +35,7 @@ Approach 1 (SyncWISE):
 - Testing: introduce artificial shifts in test data, correct using SyncWISE, and then classify to check the accuracy
   - The classifier here is to show the effects of SyncWISE
   - Also try to run another cross-correlation based approach (baseline method in SyncWISE paper)
-		
+	
 Approach 2 (TimeAwareness):
 - Training + Validation with data augmentation (domain randomization)
   - Expand the training and validation data with additional copies that have random shifts
@@ -42,11 +43,32 @@ Approach 2 (TimeAwareness):
   - The classifier here is to show the effect of data augmentation
 
 
+#### Explore how they generalize on different multimodal data
+
+#### Explore how long time shift they can handle
+
+#### Explore how short data they need
+
+#### Explore their tolerance to noise
+
+#### Explore to combine SyncWISE and TimeAwareness and evaluate the performance
+We can explore the performance when combining SyncWISE and TimeAwareness:
+
+Approach 3 (SyncWISE+ TimeAwareness):
+- Training + Validation with data augmentation (domain randomization)
+- Testing: introduce artificial shifts in test data, correct using SyncWISE, and then classify to check the accuracy
+
+#### Try to propose new methods based on them with better performance across multiple metrics
+
+
+
 ### Implementation and Results
 
 ### Prior Work
 
 ### Analysis and Future Direction
+
+### Project Timeline 
 
 ### Contribution
 
