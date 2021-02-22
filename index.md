@@ -11,7 +11,6 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 - Propose a common metric to handle their different kinds of outputs to beter compare them
 - Explore how they generalize on different multimodal data
 - Explore how long time shift and how short data they can handle
-- Explore their tolerance to noise
 - Explore to combine SyncWISE and TimeAwareness and evaluate the performance
 
 #### Stretch Objectives
@@ -52,13 +51,11 @@ TimeAwareness introduce at most 1000ms and 2000ms shifts in their 10-Sec trainin
 
 We will explore and compare how long time shift TimeAwareness and SyncWISE can handle given the same data of the same length. Besides, we will gradually reduce the length of the data and record their performance changes to see how short data they can handle.
 
-#### Explore their tolerance to noise
-
 
 #### Explore to combine SyncWISE and TimeAwareness and evaluate the performance
-We can explore the performance when combining SyncWISE and TimeAwareness:
+Since both SyncWISE and TimeAwareness aims to handle time shifts across multimodal data, we can explore to combinie them and evaluate the performance.
 
-Approach 3 (SyncWISE+ TimeAwareness):
+Approach SyncWISE + TimeAwareness:
 - Training + Validation with data augmentation (domain randomization)
 - Testing: introduce artificial shifts in test data, correct using SyncWISE, and then classify to check the accuracy
 
