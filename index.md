@@ -77,7 +77,15 @@ TimeAwareness：
 2. TimeAwareness：Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
 
 
-### Analysis and Future Direction (to be updated dynamically)
+### Analysis and Future Directions (to be updated dynamically)
+Strengths and weakness, and future directions.
+#### Future directions
+Due to time limitation, here are some topics may be interesting and can be explored in the future:
+- Explore Generalizing On Different Multimodal Data	
+  - Although SyncWISE and Time Awareness claim that their algorithms can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. Time Awareness uses audio and IMU data from CMActivities dataset. It will be interesting to explore how they generalize on different multimodal data. 	
+  - Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we may can explore multimodal data in the future.
+- Explore how to predict time shifts using deep learning models
+  - Time Awareness uses deep learning models to handle multimodal data with faulty time stamps directly. It will be interesting to explore how to predict time shifts using deep learning models.
 
 ### Project Timeline (to be updated dynamically)
 - Week 1 and 2
