@@ -2,6 +2,10 @@
 
 This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different datasets and metrics, and trying to propose new methods based on them to improve the performance.
 
+<div align=center>![Time Shifts in SyncWISE Paper](https://github.com/milo168/ECE209TimeStamp/blob/gh-pages/Images/TimeShift_SyncWISE.png)
+
+<img src="](https://github.com/milo168/ECE209TimeStamp/blob/gh-pages/Images/TimeShift_SyncWISE.png" width = "100" height = "100" div align=center />
+
 ------
 ### Goals
 The time synchronization of multiple sensor streams is a long-standing challenge. Inaccurate time stamps on multimodal data can cause a lot of problems like accuracy loss on models that try to classify a series of actions. Some works try to tackle the source of the problem and minimize the error by enforcing synchronization at the hardware or software level during capture. Some works exploit the cross-correlation of the data from different sensors to predict and correct the time shifts before using them further. Other works have focused on training deep learning models that can be robust to bad timestamps using data augmentation techniques.
@@ -142,6 +146,7 @@ Section with links to PDF of your final presentation slides, and any data sets n
 1. Zhang Y C, Zhang S, Liu M, et al. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors[J]. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 2020, 4(3): 1-26.
   - Paper: <https://dl.acm.org/doi/abs/10.1145/3411824>
   - Website: <https://github.com/HAbitsLab/SyncWISE>
+  - Short Talk: <https://www.youtube.com/watch?v=p86hH8O5xhs>
 
 2. Sandha S S, Noor J, Anwar F M, et al. Time awareness in deep learning-based multimodal fusion across smartphone platforms[C]//2020 IEEE/ACM Fifth International Conference on Internet-of-Things Design and Implementation (IoTDI). IEEE, 2020: 149-156.
   - Paper: <https://ieeexplore.ieee.org/document/9097594>
