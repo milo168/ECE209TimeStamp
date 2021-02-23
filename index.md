@@ -3,10 +3,7 @@
 This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different datasets and metrics, and trying to propose new methods based on them to improve the performance.
 
 <div align=center><img width="600" height="300" src="./Images/TimeShift_SyncWISE.png"/></div>
-
-<center>Time Shifts in Multimodal Data from SyncWISE Paper1</center>
-
-<div align=center>Time Shifts in Multimodal Data from SyncWISE Paper2</div>
+<center>Time Shifts in Multimodal Data from SyncWISE Paper</center>
 
 
 ------
