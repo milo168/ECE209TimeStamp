@@ -9,7 +9,6 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 
 #### Basic Objectives
 - Propose a common metric to handle their different kinds of outputs to better compare the effects
-- Explore how to generalize on different multimodal data
 - Explore the range of shifts that can be handled by each component
 - Explore to combine SyncWISE and Time Awareness and evaluate the performance
 
@@ -45,10 +44,6 @@ Approach 3 (SyncWISE + Time Awareness Non-Robust):
   - The classifier here is to show the effects of SyncWISE
   - Also try to run another cross-correlation based approach (baseline method in SyncWISE paper)
 
-#### Exploring Generalizing On Different Multimodal Data
-Although SyncWISE and Time Awareness claim that their algorithms can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. Time Awareness uses audio and IMU data from CMActivities dataset. It will be interesting to explore how they generalize on different multimodal data. 
-
-Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, **we plan to explore video-accelerometry and audio-IMU data on them first.**
 
 #### Exploring Time Shift Range Effectivness
 
