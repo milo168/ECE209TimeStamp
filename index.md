@@ -100,6 +100,18 @@ TimeAwareness：
 
 
 ### Contribution (to be updated dynamically)
+Gaofeng Dong 
+- Implementation and maintenance of the project website and Github repository
+- Survey of literature related to bad timestamp, especially SyncWISE and Time Awareness
+- Rerun the codes of SyncWISE and Time Awareness
+- Prepare Project Midterm Presentation
+
+Michael Lo
+- Design and maintenance of the project website and Github repository
+- Survey of literature related to bad timestamp, especially SyncWISE and Time Awareness
+- Rerun the codes of SyncWISE and Time Awareness
+- Prepare Project Midterm Presentation
+
 
 ### PDF
 Section with links to PDF of your final presentation slides, and any data sets not in your repo.
