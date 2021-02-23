@@ -88,12 +88,9 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 |SyncWISE|1403.4546153846159|416.2898679848237|73.38461538461539|88.7179487179487|
 
 
-<div align=center><img width="600" height="330" src="./Images/TimeShift_SyncWISE.png"/></div>
+<div align=center><img width="700" height="160" src="./Images/Results_SyncWISE.png"/></div>
 
 <center>Results from SyncWISE Paper</center>
-
-
-
 
 ##### TimeAwareness：
 
