@@ -5,3 +5,5 @@ The project will focus on exploring state-of-the-art methods which try to mitiga
 
 Learn more on this website!
 https://milo168.github.io/ECE209TimeStamp/
+
+The above website is stored and maintained on another branch: https://github.com/milo168/ECE209TimeStamp/tree/gh-pages
