@@ -4,6 +4,9 @@ This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervi
 
 <img src="https://github.com/milo168/ECE209TimeStamp/blob/gh-pages/Images/TimeShift_SyncWISE.png" alt="GitHub" title="Time Shifts in Multimodal Data from SyncWISE Paper" width="600" height="300" div align=center />
 
+<div style="align: center">
+<img src="http://upload-images.jianshu.io/upload_images/2182065-91ff11ffeb37cff2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"/>
+</div>
 
 ------
 ### Goals
