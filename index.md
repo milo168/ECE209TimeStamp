@@ -1,6 +1,6 @@
 ## Time Sync Study
 
-This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different datasets and metrics, and trying to propose new methods based on them to improve the performance.
+This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different metrics, and trying to propose new methods based on them to improve the performance.
 
 <div align=center><img width="600" height="330" src="./Images/TimeShift_SyncWISE.png"/></div>
 
@@ -14,7 +14,7 @@ The time synchronization of multiple sensor streams is a long-standing challenge
 This project will focus on the cross-correlation-based and deep-learning-based methods. Specifically, we choose two state-of-the-art works “SyncWISE” and “TimeAwareness” to explore and investigate.
 
 #### Basic Objectives
-- Propose a common metric to handle their different kinds of outputs to better compare the effects
+- Propose a common metric to handle their different kinds of outputs and compare them
 - Explore the range of shifts that can be handled by each component
 - Explore to combine SyncWISE and Time Awareness and evaluate the performance
 
