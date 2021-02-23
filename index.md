@@ -59,7 +59,7 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 - Training + Validation with data augmentation (domain randomization) of shifted data
 - Testing: introduce artificial shifts in test data, WITH SyncWISE correction, and then feed to classifier
 
-#### Maybe Modify Current Deep Learning Model
+#### Modify Current Deep Learning Model
 In Time Awareness, they use a simple model with two convolutional layers and several fully connected layers. To improve the capacity of the model, we can try more complex architectures like LSTM to get better performance. 
 
 ### Implementation and Results (to be updated dynamically)
@@ -80,6 +80,24 @@ TimeAwareness：
 ### Analysis and Future Direction (to be updated dynamically)
 
 ### Project Timeline (to be updated dynamically)
+- Week 1 and 2
+  - Search for project ideas and discuss with instructor
+- Week 3 and 4
+  - Literature review on Bad TimeStamps, especially SyncWISE and Time Awareness
+  - Team up
+  - Second discussion about final idea with instructor
+- Week 5
+  - Determine the final project idea
+  - Initinal project website and Github repository
+- Week 6 and 7
+  - Re-run the codes of SyncWISE
+  - Re-run the codes of Time Awareness
+  - Update project website and Github repository
+  - Prepaer Project Midterm Presentation
+- Week 8
+  - Project Midterm Presentation
+  - Trying Approach Baseline
+
 
 ### Contribution (to be updated dynamically)
 
