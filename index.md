@@ -102,20 +102,21 @@ TimeAwareness：
 ### Contribution (to be updated dynamically)
 
 ### PDF
+Section with links to PDF of your final presentation slides, and any data sets not in your repo.
 
 ### References
-1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
-- Paper: https://dl.acm.org/doi/abs/10.1145/3411824
-- Website: https://github.com/HAbitsLab/SyncWISE
+1. Zhang Y C, Zhang S, Liu M, et al. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors[J]. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 2020, 4(3): 1-26.
+  - Paper: https://dl.acm.org/doi/abs/10.1145/3411824
+  - Website: https://github.com/HAbitsLab/SyncWISE
 
-2. Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
-- Paper: https://ieeexplore.ieee.org/document/9097594
-- Website: https://github.com/nesl/CMActivities-DataSet
+2. Sandha S S, Noor J, Anwar F M, et al. Time awareness in deep learning-based multimodal fusion across smartphone platforms[C]//2020 IEEE/ACM Fifth International Conference on Internet-of-Things Design and Implementation (IoTDI). IEEE, 2020: 149-156.
+  - Paper: https://ieeexplore.ieee.org/document/9097594
+  - Website: https://github.com/nesl/CMActivities-DataSet
 
-3. Automated Synchronization of Driving Data Using Vibration and Steering Events
-- Paper: https://arxiv.org/abs/1510.06113
+3. Fridman L, Brown D E, Angell W, et al. Automated synchronization of driving data using vibration and steering events[J]. Pattern Recognition Letters, 2016, 75: 9-15.
+  - Paper: https://arxiv.org/abs/1510.06113
 
-4. 
-
+4. Adams R, Marlin B M. Learning Time Series Segmentation Models from Temporally Imprecise Labels[C]//UAI. 2018: 135-144.
+  - Paper: http://auai.org/uai2018/proceedings/papers/50.pdf
 
 
