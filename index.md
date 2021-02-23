@@ -64,7 +64,7 @@ In Time Awareness, they use a simple model with two convolutional layers and sev
 
 ### Implementation and Results (to be updated dynamically)
 #### Re-run SyncWISE and TimeAwareness
-Though they provides most codes on their GitHub, it took some time to debug and re-run their codes. Finally, we get results as seen in the papers.
+Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
 
 SyncWISE：
 
