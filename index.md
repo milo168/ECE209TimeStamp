@@ -2,7 +2,8 @@
 
 This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different datasets and metrics, and trying to propose new methods based on them to improve the performance.
 
-<div align=center><img width="600" height="300" src="./Images/TimeShift_SyncWISE.png"/></div>
+<div align=center><img width="600" height="330" src="./Images/TimeShift_SyncWISE.png"/></div>
+
 <center>Time Shifts in Multimodal Data from SyncWISE Paper</center>
 
 
@@ -75,9 +76,26 @@ In Time Awareness, they use a simple model with two convolutional layers and sev
 #### Re-run SyncWISE and TimeAwareness
 Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
 
-SyncWISE：
+##### SyncWISE：
 
-TimeAwareness：
+<center>Results from our re-run codes</center>
+
+|Method|Ave #Win Pairs|Ave Error (ms)|PV300 (%)|PV700 (%)|
+| :----: | :----: | :----: | :----: | :----: |
+|Baseline-xx|1|30032.676735022145|55.38461538461539|83.07692307692308|
+|Baseline-PCA|1|53093.94500744793| 50.0| 70.0|
+|SyncWISE-xx|1403.4546153846159|447.0069581348005|62.35897435897436|89.7179487179487|
+|SyncWISE|1403.4546153846159|416.2898679848237|73.38461538461539|88.7179487179487|
+
+
+<div align=center><img width="600" height="330" src="./Images/TimeShift_SyncWISE.png"/></div>
+
+<center>Results from SyncWISE Paper</center>
+
+
+
+
+##### TimeAwareness：
 
 
 
