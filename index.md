@@ -31,7 +31,7 @@ Window Induced Shift Estimation method for Synchronization (SyncWISE) mainly aim
 1. The average of the absolute value of the synchronization error, $Eavg$.
 2. The percentage of clips which are synchronized to an offset error of less than $n$ ms, $Pv-n$. 
 
-Time Awareness tries to use the data directly instead of aligning them. It induces time synchronization errors when training the deep learning models to improve the model's robustness. They add artificial shifts in the dataset and check the model's test accuracies to evaluate the effectiveness. 
+Time Awareness tries to use the data directly instead of aligning them. It induces time synchronization errors when training the model to improve the model's robustness. They add artificial shifts in the dataset and check the model's test accuracies to evaluate the effectiveness. 
 
 Here, we propose four combinations to understand the effectiveness of each work. The details of training and testing of these three approaches are shown below. We will use the same original model architecture and dataset if possible.
 
@@ -121,17 +121,17 @@ Due to time limitation, here are some topics may be interesting and can be explo
 - Week 1 and 2
   - Search for project ideas and discuss with instructor
 - Week 3 and 4
-  - Literature review on Bad TimeStamps, especially SyncWISE and Time Awareness
+  - Literature review for faulty timestamp and its consequences, especially SyncWISE and Time Awareness
   - Team up
   - Second discussion about final idea with instructor
 - Week 5
   - Determine the final project idea
-  - Initinal project website and Github repository
+  - Initial project website and Github repository
 - Week 6 and 7
   - Re-run the codes of SyncWISE
   - Re-run the codes of Time Awareness
   - Update project website and Github repository
-  - Prepaer Project Midterm Presentation
+  - Prepare Project Midterm Presentation
 - Week 8
   - Project Midterm Presentation
   - Trying Approach Baseline
