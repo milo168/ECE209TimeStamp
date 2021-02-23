@@ -2,6 +2,7 @@
 
 This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different datasets and metrics, and trying to propose new methods based on them to improve the performance.
 
+------
 ### Goals
 The time synchronization of multiple sensor streams is a long-standing challenge. Inaccurate time stamps on multimodal data can cause a lot of problems like accuracy loss on models that try to classify a series of actions. Some works try to tackle the source of the problem and minimize the error by enforcing synchronization at the hardware or software level during capture. Some works exploit the cross-correlation of the data from different sensors to predict and correct the time shifts before using them further. Other works have focused on training deep learning models that can be robust to bad timestamps using data augmentation techniques.
 
@@ -15,6 +16,7 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 #### Future Objectives
 - Propose new methods with these two works as foundations for better performance measured on different metrics
 
+------
 ### Approach (to be updated dynamically)
 #### Proposing a Common Measurement Metric
 Though SyncWISE and Time Awareness try to handle similar time synchronization errors across multimodal data, they have different specific goals, generate different kinds of outputs, and use different metrics to evaluate their methods. Therefore, to compare these two methods, we first need to propose a common metric to show their performance under the same criteria. 
@@ -62,6 +64,9 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 #### Modify Current Deep Learning Model
 In Time Awareness, they use a simple model with two convolutional layers and several fully connected layers. To improve the capacity of the model, we can try more complex architectures like LSTM to get better performance. 
 
+
+
+------
 ### Implementation and Results (to be updated dynamically)
 #### Re-run SyncWISE and TimeAwareness
 Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
@@ -71,12 +76,16 @@ SyncWISE：
 TimeAwareness：
 
 
+
+------
 ### Prior Work
 1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
 
 2. TimeAwareness：Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
 
 
+
+------
 ### Analysis and Future Directions (to be updated dynamically)
 Strengths and weakness, and future directions.
 #### Future directions
@@ -87,6 +96,8 @@ Due to time limitation, here are some topics may be interesting and can be explo
 - Explore how to predict time shifts using deep learning models
   - Time Awareness uses deep learning models to handle multimodal data with faulty time stamps directly. It will be interesting to explore how to predict time shifts using deep learning models.
 
+
+------
 ### Project Timeline (to be updated dynamically)
 - Week 1 and 2
   - Search for project ideas and discuss with instructor
@@ -107,6 +118,7 @@ Due to time limitation, here are some topics may be interesting and can be explo
   - Trying Approach Baseline
 
 
+------
 ### Contribution (to be updated dynamically)
 Gaofeng Dong 
 - Implementation and maintenance of the project website and Github repository
@@ -121,9 +133,11 @@ Michael Lo
 - Prepare Project Midterm Presentation
 
 
+------
 ### PDF
 Section with links to PDF of your final presentation slides, and any data sets not in your repo.
 
+------
 ### References
 1. Zhang Y C, Zhang S, Liu M, et al. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors[J]. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 2020, 4(3): 1-26.
   - Paper: https://dl.acm.org/doi/abs/10.1145/3411824
