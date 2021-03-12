@@ -113,9 +113,9 @@ The training of this fusion model did not involve and shifted data. The testing 
 #### Approach 2 (NO SyncWise + Time Awareness Robust):
 The training of this fusion model included shifted data. The testing dataset contained shifts ranging from 50ms to 2000ms. It was not corrected by SyncWISE was was given to the fusion model as is. As expected, this model performs well up to the shifts it has been trained on. As we can see in the images below, when trained only up to 1000ms, the accuracy past 1000ms starts to drop. However, if trained up to 2000ms the accuracy does not drop as the previous one.
 
-<div align=center><img width="400" height="160" src="./Images/Result_1s.png"/></div>
+<div align=center><img width="400" height="200" src="./Images/Result_1s.png"/></div>
 
-<div align=center><img width="400" height="160" src="./Images/Result_2s.png"/></div>
+<div align=center><img width="400" height="200" src="./Images/Result_2s.png"/></div>
 
 <center>Results when training with different amount of shifts</center>
 
