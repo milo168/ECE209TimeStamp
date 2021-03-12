@@ -180,7 +180,8 @@ Michael Lo
 ------
 ### PDF
 Section with links to PDF of your final presentation slides, and any data sets not in your repo.
-
+Train Dataset: https://ucla.app.box.com/s/nn19mcbjm8qdmv6xnvbmviyicl5kjt0u
+Test Dataset: https://ucla.app.box.com/s/d7r9oez41jz65yyrkfket6hpoej3qps5
 ------
 ### References
 1. Zhang Y C, Zhang S, Liu M, et al. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors[J]. Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies, 2020, 4(3): 1-26.
