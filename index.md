@@ -6,12 +6,13 @@ This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervi
 
 <center>Time Shifts in Multimodal Data from SyncWISE Paper</center>
 
-
 ------
-### Goals
-The time synchronization of multiple sensor streams is a long-standing challenge. Inaccurate time stamps on multimodal data can cause a lot of problems like accuracy loss on models that try to classify a series of actions. Some works try to tackle the source of the problem and minimize the error by enforcing synchronization at the hardware or software level during capture. Some works exploit the cross-correlation of the data from different sensors to predict and correct the time shifts before using them further. Other works have focused on training deep learning models that can be robust to bad timestamps using data augmentation techniques.
+### Background and Goals
+Multi-modality sensors offer a wider insight into understanding complex behaviors. For example, recognizing human activities such as differentiating washing hands or walking using more than one type of sensors. However, there is a challenge in lining up the data to a reference point. It may be possible one sensor has timestamps relatively faster or slower than a reference point. This issue of misaligned timestamps present challenges to deep learning models that use more than one input. During training, the model would have a hard time learning features as features corresponding to one activity leaks into another. 
 
-This project will focus on the cross-correlation-based and deep-learning-based methods. Specifically, we choose two state-of-the-art works “SyncWISE” and “TimeAwareness” to explore and investigate.
+Some works try to tackle the issue of misalignment through several ways. Some try to fix the source of the problem and minimize the error by enforcing synchronization at the hardware or software level during capture. Some exploit the cross-correlation of the data from different sensors to predict and correct the time shifts before using them further. Other works have focused on training deep learning models that can be robust to bad timestamps using data augmentation techniques.
+
+This project will focus on the cross-correlation-based and deep-learning-based methods. Specifically, we will explore and investigate two state-of-the-art works “SyncWISE” and “Time Awareness”.
 
 #### Basic Objectives
 - Explore the range of shifts that can be handled by each component
@@ -30,9 +31,9 @@ Window Induced Shift Estimation method for Synchronization (SyncWISE) mainly aim
 1. The average of the absolute value of the synchronization error, $Eavg$.
 2. The percentage of clips which are synchronized to an offset error of less than $n$ ms, $Pv-n$. 
 
-Time Awareness tries to use the data directly instead of aligning them. It induces time synchronization errors when training the model to improve the model's robustness. They add artificial shifts in the dataset and check the model's test accuracies to evaluate the effectiveness. 
+Time Awareness tries to use the data directly instead of aligning them. It induces time synchronization errors during training to improve the model's robustness. They add artificial shifts in the dataset and check the model's test accuracies to evaluate the effectiveness. 
 
-Here, we propose four combinations to understand the effectiveness of each work. The details of training and testing of these three approaches are shown below. We will use the same original model architecture and dataset if possible.
+Here, we will evaluate four combinations to understand the effectiveness of each work. The details of training and testing of these three approaches are shown below. We will use the same original model architecture and dataset if possible.
 
 Approach Baseline (NO SyncWISE + Time Awareness Non-Robust): 
 - Training + Validation WITHOUT data augmentation (domain randomization) of shifted data
@@ -54,17 +55,19 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 - Training + Validation with data augmentation (domain randomization) of shifted data
 - Testing: introduce artificial shifts in test data, WITH SyncWISE correction, and then feed to classifier
 
-
 #### Exploring the Dataset
 Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units. In this dataset, there are 7 human activities roughly distributed equally. There are roughly 12,000 train+validate samples and 1,400 test samples total. It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
 
-Time Awareness focuses on the audio and IMU modality. For our work we will be focusing video and IMU as SyncWise uses those modality.
+SyncWISE uses the CMU-MMAC dataset which contains 2 sensor modalities. These modalities are video and inertial measurement units. There are a total of 163 videos representing 45.2 hours of data, averaging 998.28s per clip. The dataset is augmented by adding random offsets in the range [-3 sec, 3 sec] is used. The original offsets of the S2S-Sync dataset has a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms.
 
-Time Awareness introduces at most 1000ms and 2000ms shifts in its 10-Sec training and testing data respectively, and it can preserve classifier accuracy up to 600ms of timing error. For SyncWISE, a synthetic testing dataset based on S2S-Sync dataset by adding random offsets in the range [-3 sec, 3 sec] is used. The original offsets of the S2S-Sync dataset has a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms. S2S-Sync dataset has 163 video clips totaling 45.2 hours, which means the average period of each clip is 998.28s.
-
-
+The dataset we will be using is the CMActivity dataset since the IMU deep learning model is provided by Time Awareness. In addition, we will be using CMAcitvity dataset for the model and IMU samples. Since we are more familiar with thise dataset, this will provide us an anchor point as we will be able to tell if something went wrong.
 
 ------
+### Expectations
+We were able to run the codes from both paper to get a feel. The Time Awareness code was straight forward to run and can easily be modified to use video instead of audio. We expect that most of our time will be spent on tweaking SyncWISE to be able to use the CMActivity dataset. 
+
+We believe that SyncWISE will play a significant role in error correction since we think that for Time Awareness, the model learns by feature. By introducing shifts into the training dataset, we think that the model will only memorize the shifts it has seen. If we were to give it shifts that were more than what it has seen during training, the accuracy would drop. This is confirmed in the paper as it does poorly pass 1000ms.
+
 ##### Re-run SyncWISE and TimeAwareness
 Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
 
@@ -91,6 +94,24 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 
 
 <div align=center><img width="400" height="160" src="./Images/Result_Baseline.png"/></div>
+
+<center>Results from Time Awareness where top model is from the paper</center>
+
+------
+### Implementation and Results
+#### Deep Learning Models
+We will keep the same IMU model used in Time Awareness. This model contains 2 convolution layers and 3 multilayer perceptrons. For the video model we will be using C3D model. This model has 4 3d convolutoion layers and 3 multilayer perceptrons. When independently training these models, the IMU accuracy is 91.65% and the video accuracy is 93.25%. We then build a fusion model using these 2. The fusion model has an additional multilayer perceptron and has an accuracy of 97.17%, showing that multi-modal models help improve accuracy.
+
+#### Approach Baseline (NO SyncWISE + Time Awareness Non-Robust): 
+The training of this fusion model did not involve and shifted data. The testing dataset contained shifts ranging from 50ms to 2000ms. It was not corrected by SyncWISE and was given to the fusion model as is. As we can see in the image below, as the shifts become more pronounced, the accuracy of the model drops.
+
+#### Approach 2 (NO SyncWise + Time Awareness Robust):
+The training of this fusion model included shifted data. The testing dataset contained shifts ranging from 50ms to 2000ms. It was not corrected by SyncWISE was was given to the fusion model as is. As expected, this model performs well up to the shifts it has been trained on. As we can see in the images below, when trained only up to 1000ms, the accuracy past 1000ms starts to drop. However, if trained up to 2000ms the accuracy does not drop as the previous one.
+
+<div align=center><img width="400" height="160" src="./Images/Result_1s.png"/></div>
+
+
+<div align=center><img width="400" height="160" src="./Images/Result_2s.png"/></div>
 
 <center>Results from Time Awareness where top model is from the paper</center>
 
@@ -133,7 +154,9 @@ Due to time limitation, here are some topics may be interesting and can be explo
 - Week 8
   - Project Midterm Presentation
   - Trying Approach Baseline
-
+- Week 9
+  - Modify SyncWISE to use CMACtivity
+  - Train video model and fusion model
 
 ------
 ### Contribution (to be updated dynamically)
@@ -170,5 +193,8 @@ Section with links to PDF of your final presentation slides, and any data sets n
 
 4. Adams R, Marlin B M. Learning Time Series Segmentation Models from Temporally Imprecise Labels[C]//UAI. 2018: 135-144.
   - Paper: <http://auai.org/uai2018/proceedings/papers/50.pdf>
+
+5. Du Tran, Lubomir Bourdev, Rob Fergus, Lorenzo Torresami, Manohar Paluri Learning Spatiotemporal Features with 3D Convolution Neural Networks[C]. 2015 IEEE International Conference on Computer Vision. IEEE, 2015: 4489-4497
+  - Paper: <https://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.pdf>
 
 
