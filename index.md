@@ -14,7 +14,6 @@ The time synchronization of multiple sensor streams is a long-standing challenge
 This project will focus on the cross-correlation-based and deep-learning-based methods. Specifically, we choose two state-of-the-art works “SyncWISE” and “TimeAwareness” to explore and investigate.
 
 #### Basic Objectives
-- Propose a common metric to handle their different kinds of outputs and compare them
 - Explore the range of shifts that can be handled by each component
 - Explore to combine SyncWISE and Time Awareness and evaluate the performance
 
@@ -22,9 +21,9 @@ This project will focus on the cross-correlation-based and deep-learning-based m
 - Propose new methods with these two works as foundations for better performance measured on different metrics
 
 ------
-### Approach (to be updated dynamically)
-#### Proposing a Common Measurement Metric
-Though SyncWISE and Time Awareness try to handle similar time synchronization errors across multimodal data, they have different specific goals, generate different kinds of outputs, and use different metrics to evaluate their methods. Therefore, to compare these two methods, we first need to propose a common metric to show their performance under the same criteria. 
+### Approach
+#### Measuring Contribution
+Though SyncWISE and Time Awareness try to handle similar time synchronization errors across multimodal data, they have different specific goals, generate different kinds of outputs, and use different metrics to evaluate their methods. Therefore, to measure their effectivness, we need to evaluate both contributions individually. Finally, we will combine both methods to see if further improvement can be gained.
 
 Window Induced Shift Estimation method for Synchronization (SyncWISE) mainly aims to synchronize video data with adjacent sensor streams, which can enable temporal alignment of video-derived labels to diverse wearable sensor signals. It uses cross-correlation to match multimodal data to the offsets. The output is the time shifts between video and other sensor data. SyncWISE uses two metrics to evaluate performance: 
 
@@ -51,29 +50,22 @@ Approach 3 (SyncWISE + Time Awareness Non-Robust):
   - The classifier here is to show the effects of SyncWISE
   - Also try to run another cross-correlation based approach (baseline method in SyncWISE paper)
 
-
-#### Exploring Time Shift Range Effectivness
-
-Time Awareness introduces at most 1000ms and 2000ms shifts in its 10-Sec training and testing data respectively, and it can preserve classifier accuracy up to 600ms of timing error. For SyncWISE, a synthetic testing dataset based on S2S-Sync dataset by adding random offsets in the range [-3 sec, 3 sec] is used. The original offsets of the S2S-Sync dataset has a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms. S2S-Sync dataset has 163 video clips totaling 45.2 hours, which means the average period of each clip is 998.28s.
-
-We will explore and compare how long time shift Time Awareness and SyncWISE can handle if given the same length of timed data. We will observe how well each algorithm works by gradually reducing the length of the data and record their performance change to see its limit.
-
-
-#### Combining SyncWISE + Time Awareness
-Since both SyncWISE and Time Awareness aims to handle time shifts across multimodal data, we will explore combining the two and evaluate the performance.
-
 Approach 4 (SyncWISE + TimeAwareness Robust):
 - Training + Validation with data augmentation (domain randomization) of shifted data
 - Testing: introduce artificial shifts in test data, WITH SyncWISE correction, and then feed to classifier
 
-#### Modify Current Deep Learning Model
-In Time Awareness, they use a simple model with two convolutional layers and several fully connected layers. To improve the capacity of the model, we can try more complex architectures like LSTM to get better performance. 
+
+#### Exploring the Dataset
+Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units. In this dataset, there are 7 human activities roughly distributed equally. There are roughly 12,000 train+validate samples and 1,400 test samples total. It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
+
+Time Awareness focuses on the audio and IMU modality. For our work we will be focusing video and IMU as SyncWise uses those modality.
+
+Time Awareness introduces at most 1000ms and 2000ms shifts in its 10-Sec training and testing data respectively, and it can preserve classifier accuracy up to 600ms of timing error. For SyncWISE, a synthetic testing dataset based on S2S-Sync dataset by adding random offsets in the range [-3 sec, 3 sec] is used. The original offsets of the S2S-Sync dataset has a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms. S2S-Sync dataset has 163 video clips totaling 45.2 hours, which means the average period of each clip is 998.28s.
 
 
 
 ------
-### Implementation and Results (to be updated dynamically)
-#### Re-run SyncWISE and TimeAwareness
+##### Re-run SyncWISE and TimeAwareness
 Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
 
 ##### SyncWISE：
