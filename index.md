@@ -103,9 +103,9 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 We will keep the same IMU model used in Time Awareness. This model contains 2 convolution layers and 3 fully connected layers. For the video model we will be using C3D model. This model has 4 3d convolution layers and 3 fully connected layers. When independently training these models, the IMU accuracy is 91.65% and the video accuracy is 93.25%. We then build a fusion model using these 2. The fusion model has an additional fully connected layer and has an accuracy of 97.17%, showing that multi-modal models help improve accuracy.
 
 
-<div align=center><img width="800" height="80" src="./Images/C3D_model.png"/></div>
+<div align=center><img width="800" height="80" src="./Images/Fused_model.png"/></div>
 
-<center>Model chosen for the video modality</center>
+<center>Fused model with the chosen models for the video and imu modality</center>
 
 #### Approach Baseline (NO SyncWISE + Time Awareness Non-Robust): 
 The training of this fusion model did not involve and shifted data. The testing dataset contained shifts ranging from 50ms to 2000ms. It was not corrected by SyncWISE and was given to the fusion model as is. As we can see in the image below, as the shifts become more pronounced, the accuracy of the model drops.
