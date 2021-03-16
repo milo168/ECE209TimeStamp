@@ -62,6 +62,9 @@ SyncWISE uses the CMU-MMAC dataset which contains 2 sensor modalities. These mod
 
 The dataset we will be using is the CMActivity dataset since the IMU deep learning model is provided by Time Awareness. In addition, we will be using CMAcitvity dataset for the model and IMU samples. Since we are more familiar with thise dataset, this will provide us an anchor point as we will be able to tell if something went wrong.
 
+### Shift Generation
+To generate the shifts, we first create a window of activities such as have 5 samples of walk, followed by 5 samples of run, followed by 5 samples of jump, and so on. Then we shift the IMU data. It is possible that when shifting, some shifted IMU for one activity still falls within the same due to the window. However, this won't be the case as larger shifts are introduced. We can see this happening as the accuracy drops as larger shifts are induced.
+
 ------
 ### Expectations
 We were able to run the codes from both paper to get a feel. The Time Awareness code was straight forward to run and can easily be modified to use video instead of audio. We expect that most of our time will be spent on tweaking SyncWISE to be able to use the CMActivity dataset. 
@@ -120,10 +123,14 @@ The training of this fusion model included shifted data. The testing dataset con
 <center>Results when training with different amount of shifts</center>
 
 #### Approach 3 (SyncWISE + Time Awareness Non-Robust): 
-BLANK TEXT
+Here we take the max shift given by SyncWise and correct the shifted samples before feeding into the augmented trained neural network. It still does well and is able to fix the shortcoming where larger shifts reside in the samples as SyncWise essentially just moves the shifts to an accuracy where the neural network does well in. From the image above, one can see that the augmented model starts to dip near the 2000 ms shift. With SyncWise it is able to shift it to 1600 ms error in which the neural network does well.
 
 #### Approach 4 (SyncWISE + TimeAwareness Robust):
-BLANK TEXT
+Here we take the max shift given by Syncwise and correct the shifted samples before feeding into the non-augmented trained neural network. Since the non-augmented model is extremely sensitive to shifts, then it is up to SyncWise to eliminate it. However, even SyncWise cannot eliminate all and the model still keeps its sensitivity since SyncWise only delays the decrease point for accuracy.
+
+<div align=center><img width="400" height="200" src="./Images/Result_Sync_Max.png"/></div>
+
+<center>Results when given corrected shifts by SyncWise</center>
 
 ------
 ### Prior Work
@@ -132,10 +139,10 @@ BLANK TEXT
 2. TimeAwareness：Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
 
 
-
 ------
-### Analysis and Future Directions (to be updated dynamically)
-Strengths and weakness, and future directions.
+### Analysis
+Despite the challenges to modify SyncWise to use CMACtivity, it still does relatively well. It is able to estimate shifts despite having to resample and rescale the dataset. However, SyncWise can only delay the point of where accuracy decreases. It still mostly falls into how sensitive the model is when dealing with shifts. As seen, non-augmented trained model is esensitive to even the slightest shifts. If SyncWise is unable to correct it completely, then the model will do well as the total remaining shift point. The best would then to be use an augmented trained model as it has robustness to the shifts. However, it only does well to the max shift seen. When combined with SyncWise, it is possible to have it correct it so that the net shift is within bounds.
+
 #### Future directions
 Due to time limitation, here are some topics may be interesting and can be explored in the future:
 - Explore Generalizing On Different Multimodal Data	
