@@ -143,6 +143,25 @@ Here we take the max shift given by Syncwise and correct the shifted samples bef
 ### Analysis
 Despite the challenges to modify SyncWise to use CMACtivity, it still does relatively well. It is able to estimate shifts despite having to resample and rescale the dataset. However, SyncWise can only delay the point of where accuracy decreases. It still mostly falls into how sensitive the model is when dealing with shifts. As seen, non-augmented trained model is esensitive to even the slightest shifts. If SyncWise is unable to correct it completely, then the model will do well as the total remaining shift point. The best would then to be use an augmented trained model as it has robustness to the shifts. However, it only does well to the max shift seen. When combined with SyncWise, it is possible to have it correct it so that the net shift is within bounds.
 
+#### SyncWise has more delays and computations when inferring
+According to our implementations, SyncWISE has at least these delays or computations during inferring:
+- Delay 1: Compute the optical flows of videos using PWCNet deep learning  model
+  - 7 hours for 13353 videos on 2.5GHz Intel CPU: 1.89s/video (45 frames, 64*64*3 pixels)
+- Delay 2: Compute the IMU reliability data (Not used in this project)
+- Delay 3: Upsampling the IMU to match the video sampling rate
+  - Cubic Spline Interpolation
+- Delay 4: PCA Projection of optical flows and IMU data
+- Delay 5: Cross-correlation of N window pairs (N=32 in this project; 1403 in SyncWISE)
+- Delay 6: Weighted Gaussian kernel density estimate from N offsets
+
+In our experiments, Delay 3-6 is around 10 minutes for 1377 samples so per sample takes 0.44s. This means SyncWISE will take at least 2.33s to predict one offset even using 2.5GHz Intel CPU in our project. While TimeAwareness can process the inputs directly and has no such delays in inference. Therefore, SyncWISE may not be suitable for real-time/online tasks on resource-limited devices. 
+
+
+
+
+
+
+
 #### Future directions
 Due to time limitation, here are some topics may be interesting and can be explored in the future:
 - Explore Generalizing On Different Multimodal Data	
