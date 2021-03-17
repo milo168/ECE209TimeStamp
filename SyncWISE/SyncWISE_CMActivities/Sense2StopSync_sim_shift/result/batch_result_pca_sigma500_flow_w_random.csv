@@ -1,0 +1,2 @@
+window_size_sec,stride_sec,window_criterion,max_offset,kde_num_offset,offset_sec,num_videos,ave_num_segs,ave_offset,ave_conf,PV1000,PV700,PV300,PV100
+0.5,0.3,0.9,1000,8,0.0,1376,32.0,94.80523255813954,6250.525638171605,1.0,1.0,0.9847383720930233,0.6024709302325582
