@@ -129,7 +129,7 @@ And it took around 7 hours to process the 13353 videos in CMActivities dataset t
 ### Adjust SyncWISE to handle CMActivies dataset
 First, we modify the codes of SyncWISE and almost every function is corrected. The reasons are that CMActivies have different data format, no codes to compute IMU quality data, have problems when using floating point WindowSize and Stride, can handle only 3-axis IMU but now 4\*3-axis, the upsampling of IMU cannot be used here, load and store every results based on the start times, etc. We spent most of the time here. And below are the functions corrected by us:
 
-<div align=center><img width="250" height="400" src="./Images/ModifiedFunctions.png"/></div>
+<div align=center><img width="250" height="350" src="./Images/ModifiedFunctions.png"/></div>
 
 Second, we tune the hyperparameters because the length and data quality etc are different for CMActivies and original SyncWISE dataset. The main hyperparameters are: Window_size_sec, STRIDE_SEC, kde_num_offset, kde_max_offset and Kernel_var.
 
@@ -165,13 +165,6 @@ Here we take the max shift given by Syncwise and correct the shifted samples bef
 <center>Results when given corrected shifts by SyncWise</center>
 
 ------
-# Prior Work
-1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
-
-2. TimeAwareness：Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
-
-
-------
 # Analysis
 SyncWise is able to correct some shifts. However, SyncWise can only delay the point of where accuracy decreases. It still mostly falls into how sensitive the model is when dealing with shifts. As seen, non-augmented trained model is esensitive to even the slightest shifts. The best would then to be use an augmented trained model as it has robustness to the shifts. However, it only does well to the max shift seen. When combined with SyncWise, it is possible to have it correct it so that the net shift is within bounds.
 
@@ -199,6 +192,19 @@ Due to time limitation, here are some topics may be interesting and can be explo
 - Explore how to predict time shifts using deep learning models
   - Time Awareness uses deep learning models to handle multimodal data with faulty time stamps directly. It will be interesting to explore how to predict time shifts using deep learning models.
 
+------
+# Related Work
+1. SyncWISE: Window Induced Shift Estimation for Synchronization of Video and Accelerometry from Wearable Sensors
+2. TimeAwareness：Time Awareness in Deep Learning-Based Multimodal Fusion Across Smartphone Platforms
+3. Automated Time Synchronization of Cough Events from Multimodal Sensors in Mobile Devices
+  - <https://dl.acm.org/doi/abs/10.1145/3382507.3418855>
+  - Explore Mmulti-Device Synchronization Issues: Phone-Watch Audio, and Multimodal Synchronization Issues: Watch IMU-Audio
+  - They use cross-correlation based matching algorithm.
+    - The same algorithm in SyncWISE.
+  - They process audio using high-pass filter, and change it to sound-pressure level.
+    - SyncWISE just filter the missing IMU data, and no such denoise pre-processings
+  - For the 3-axis accelerometer data, they use the magnitude to represent it.
+    - SyncWISE uses the first principle component using PCA
 
 ------
 # Project Timeline (to be updated dynamically)
@@ -268,4 +274,9 @@ Test Dataset: <https://ucla.app.box.com/s/d7r9oez41jz65yyrkfket6hpoej3qps5>
 
 6. Ahmed, Tousif, Mohsin Y. Ahmed, Md Mahbubur Rahman, Ebrahim Nemati, Bashima Islam, Korosh Vatanparvar, Viswam Nathan, Daniel McCaffrey, Jilong Kuang, and Jun Alex Gao. "Automated Time Synchronization of Cough Events from Multimodal Sensors in Mobile Devices." In Proceedings of the 2020 International Conference on Multimodal Interaction, pp. 614-619. 2020.
   - Paper: <https://dl.acm.org/doi/abs/10.1145/3382507.3418855?casa_token=Yw_BNgufYggAAAAA:XcX3oz_sfZYbbjvrM-iAqsSm9BOHBg-67sGnFqDP3WCaZASYf74HxSz-KiQyNnM6g1mUxrFoNDs>
+
+7. Sun, Deqing, et al. "Pwc-net: Cnns for optical flow using pyramid, warping, and cost volume." Proceedings of the IEEE conference on computer vision and pattern recognition. 2018.
+  - Github: <https://github.com/NVlabs/PWC-Net>
+  - Github: <https://github.com/philferriere/tfoptflow>
+  - Paper: <https://arxiv.org/pdf/1709.02371.pdf>
 
