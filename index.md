@@ -115,14 +115,23 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 ## SyncWISE for CMActivies
 Since the codes provided by SyncWISE is mainly for their dataset, here we need to modify the codes to handle CMActivies dataset. We didn't expect that this cost most of the time in our project because we need modify almost every function in the codes.
 
-### Compute the optical flow of the video
+### Compute the optical flows of the videos
 SyncWISE didn't use the video directly, and it calculate the optical flows from the video. In optical flows, each pixel provides a motion estimate in 𝑥 (horizontal) and 𝑦 (vertical) directions. Below figure is an example from the PWCNet work (<https://github.com/NVlabs/PWC-Net>), where the two adjacent frames generate one frame of optical flows in the same size.
 
 <div align=center><img width="400" height="200" src="./Images/OpticalFlowExample.png"/></div>
 
 Here we use PWCNet to generate the optical flows as mentioned in SyncWISE paper. We use their pre-trained model. Here is the architecture:
 
-<div align=center><img width="400" height="300" src="./Images/PWCNet.png"/></div>
+<div align=center><img width="300" height="200" src="./Images/PWCNet.png"/></div>
+
+And it took around 7 hours to process the 13353 videos in CMActivities dataset to get their optical flows.
+
+### Adjust SyncWISE to handle CMActivies dataset
+First, we modify the codes of SyncWISE and almost every function is corrected. The reasons are that CMActivies have different data format, no codes to compute IMU quality data, have problems when using floating point WindowSize and Stride, can handle only 3-axis IMU but now 4\*3-axis, the upsampling of IMU cannot be used here, load and store every results based on the start times, etc. We spent most of the time here. And below are the functions corrected by us:
+
+<div align=center><img width="250" height="400" src="./Images/ModifiedFunctions.png"/></div>
+
+Second, we tune the hyperparameters because the length and data quality etc are different for CMActivies and original SyncWISE dataset. The main hyperparameters are: Window_size_sec, STRIDE_SEC, kde_num_offset, kde_max_offset and Kernel_var.
 
 
 ## Deep Learning Models
