@@ -56,14 +56,20 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 - Testing: introduce artificial shifts in test data, WITH SyncWISE correction, and then feed to classifier
 
 ## Exploring the Dataset
-Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units. In this dataset, there are 7 human activities roughly distributed equally. There are roughly 12,000 train+validate samples and 1,400 test samples total. It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
+Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units (IMU). Here we mainly focus on video and IMU data, because sound data here is not time series instead they are the extracted features like MFCC and power spectrogram. In this dataset, there are 7 human activities roughly distributed equally: Go Upstairs, Go Downstairs, Walk, Run, Jump, Wash Hand, Jumping Jack. There are roughly 11,976 train+validate samples and 1,377 test samples total. The size of each video series is (45, 64, 64, 3), where 45 is the number of frames and 64\*64\*3 is the size of each frame. The size of each IMU series is (40, 12), consisting of 40 samples from 4 sensors (acc_right gyro_right acc_left gyro_left) where each sensor has three directions. Here are the video and IMU example:
+
+
+It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
 
 SyncWISE uses the CMU-MMAC dataset which contains 2 sensor modalities. These modalities are video and inertial measurement units. There are a total of 163 videos representing 45.2 hours of data, averaging 998.28s per clip. The dataset is augmented by adding random offsets in the range [-3 sec, 3 sec] is used. The original offsets of the S2S-Sync dataset has a complex distribution, with an average offset of 21s, max offset of 180s, and min offset of 387ms.
 
 The dataset we will be using is the CMActivity dataset since the IMU deep learning model is provided by Time Awareness. In addition, we will be using CMAcitvity dataset for the model and IMU samples. Since we are more familiar with thise dataset, this will provide us an anchor point as we will be able to tell if something went wrong.
 
 ## Shift Generation
-To generate the shifts, we first create a window of activities such as have 5 samples of walk, followed by 5 samples of run, followed by 5 samples of jump, and so on. Then we shift the IMU data. It is possible that when shifting, some shifted IMU for one activity still falls within the same due to the window. However, this won't be the case as larger shifts are introduced. We can see this happening as the accuracy drops as larger shifts are induced.
+To generate the shifts, we first create a window of activities such as have 5 samples of walk, followed by 5 samples of run, followed by 5 samples of jump, and so on. Then we shift the IMU data. It is possible that when shifting, some shifted IMU for one activity still falls within the same due to the window. However, this won't be the case as larger shifts are introduced. We can see this happening as the accuracy drops as larger shifts are induced. 
+
+<div align=center><img width="400" height="200" src="./Images/ShiftGenerate.png"/></div>
+
 
 ------
 # Expectations
@@ -71,7 +77,7 @@ We were able to run the codes from both paper to get a feel. The Time Awareness 
 
 We believe that SyncWISE will play a significant role in error correction since we think that for Time Awareness, the model learns by feature. By introducing shifts into the training dataset, we think that the model will only memorize the shifts it has seen. If we were to give it shifts that were more than what it has seen during training, the accuracy would drop. This is confirmed in the paper as it does poorly pass 1000ms.
 
-### Re-run SyncWISE and TimeAwareness
+### Re-run SyncWISE and TimeAwareness on their dataset
 Though they provides most codes and dataset on their GitHub, it took some time to debug and re-run their codes, especially for SincWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts. Finally, we run the codes successfully and get results as seen in the papers.
 
 #### SyncWISE：
@@ -102,6 +108,9 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 
 ------
 # Implementation and Results
+
+## SyncWISE
+
 ## Deep Learning Models
 We will keep the same IMU model used in Time Awareness. This model contains 2 convolution layers and 3 fully connected layers. For the video model we will be using C3D model. This model has 4 3d convolution layers and 3 fully connected layers. When independently training these models, the IMU accuracy is 91.65% and the video accuracy is 93.25%. We then build a fusion model using these 2. The fusion model has an additional fully connected layer and has an accuracy of 97.17%, showing that multi-modal models help improve accuracy.
 
