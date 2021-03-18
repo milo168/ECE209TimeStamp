@@ -58,6 +58,9 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 ## Exploring the Dataset
 Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units (IMU). Here we mainly focus on video and IMU data, because sound data here is not time series instead they are the extracted features like MFCC and power spectrogram. In this dataset, there are 7 human activities roughly distributed equally: Go Upstairs, Go Downstairs, Walk, Run, Jump, Wash Hand, Jumping Jack. There are roughly 11,976 train+validate samples and 1,377 test samples total. The size of each video series is (45, 64, 64, 3), where 45 is the number of frames and 64\*64\*3 is the size of each frame. The size of each IMU series is (40, 12), consisting of 40 samples from 4 sensors (acc_right gyro_right acc_left gyro_left) where each sensor has three directions. Here are the video and IMU example:
 
+<div align=center><img width="100" height="100" src="./Images/VideoExample.png"/></div>
+
+<div align=center><img width="150" height="100" src="./Images/IMUExample.png"/></div>
 
 It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
 
