@@ -1,4 +1,4 @@
-## Time Sync Study
+# Time Sync Study
 
 This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different metrics, and trying to propose new methods based on them to improve the performance.
 
@@ -7,7 +7,7 @@ This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervi
 <center>Time Shifts in Multimodal Data from SyncWISE Paper</center>
 
 ------
-### Background and Goals
+## Background and Goals
 Multi-modality sensors offer a wider insight into understanding complex behaviors. For example, recognizing human activities such as differentiating washing hands or walking using more than one type of sensors. However, there is a challenge in lining up the data to a reference point. It may be possible one sensor has timestamps relatively faster or slower than a reference point. This issue of misaligned timestamps present challenges to deep learning models that use more than one input. During training, the model would have a hard time learning features as features corresponding to one activity leaks into another. 
 
 Some works try to tackle the issue of misalignment through several ways. Some try to fix the source of the problem and minimize the error by enforcing synchronization at the hardware or software level during capture. Some exploit the cross-correlation of the data from different sensors to predict and correct the time shifts before using them further. Other works have focused on training deep learning models that can be robust to bad timestamps using data augmentation techniques.
