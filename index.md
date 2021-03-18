@@ -120,8 +120,9 @@ SyncWISE didn't use the video directly, and it calculate the optical flows from 
 
 <div align=center><img width="400" height="200" src="./Images/OpticalFlowExample.png"/></div>
 
+Here we use PWCNet to generate the optical flows as mentioned in SyncWISE paper. We use their pre-trained model. Here is the architecture:
 
-
+<div align=center><img width="400" height="300" src="./Images/PWCNet.png"/></div>
 
 
 ## Deep Learning Models
