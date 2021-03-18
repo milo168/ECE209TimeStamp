@@ -272,7 +272,7 @@ Michael Lo
 - Prepare the final Presentation
 
 ------
-### Links
+# Links
 Section with links to PDF of your final presentation slides, and any data sets not in your repo.
 
 Final presentation slides: <https://drive.google.com/file/d/1aI9SpPJOozm4B7X5t90oWrEIJIu8Onbk/view?usp=sharing>
