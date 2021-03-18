@@ -60,7 +60,11 @@ Time Awareness uses the CMActivity dataset which contains 3 different sensor mod
 
 <div align=center><img width="200" height="200" src="./Images/VideoExample.png"/></div>
 
+<center>Video example in CMActivity dataset</center>
+
 <div align=center><img width="300" height="200" src="./Images/IMUExample.png"/></div>
+
+<center>IMU example in CMActivity dataset</center>
 
 It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
 
@@ -73,6 +77,7 @@ To generate the shifts, we first create a window of activities such as have 5 sa
 
 <div align=center><img width="400" height="200" src="./Images/ShiftGenerate.png"/></div>
 
+<center>The Shift Generation </center>
 
 ------
 # Expectations
@@ -120,9 +125,13 @@ SyncWISE didn't use the video directly, and it calculate the optical flows from 
 
 <div align=center><img width="400" height="200" src="./Images/OpticalFlowExample.png"/></div>
 
+<center>The optical flow example from PWCNet work</center>
+
 Here we use PWCNet to generate the optical flows as mentioned in SyncWISE paper. We use their pre-trained model. Here is the architecture:
 
 <div align=center><img width="300" height="200" src="./Images/PWCNet.png"/></div>
+
+<center>The PWCNet architecture from PWCNet work</center>
 
 And it took around 7 hours to process the 13353 videos in CMActivities dataset to get their optical flows.
 
@@ -130,6 +139,8 @@ And it took around 7 hours to process the 13353 videos in CMActivities dataset t
 First, we modify the codes of SyncWISE and almost every function is corrected. The reasons are that CMActivies have different data format, no codes to compute IMU quality data, have problems when using floating point WindowSize and Stride, can handle only 3-axis IMU but now 4\*3-axis, the upsampling of IMU cannot be used here, load and store every results based on the start times, etc. We spent most of the time here. And below are the functions corrected by us:
 
 <div align=center><img width="250" height="350" src="./Images/ModifiedFunctions.png"/></div>
+
+<center>Functions in SyncWISE modified by us</center>
 
 Second, we tune the hyperparameters because the length and data quality etc are different for CMActivies and original SyncWISE dataset. The main hyperparameters are: Window_size_sec, STRIDE_SEC, kde_num_offset, kde_max_offset and Kernel_var.
 
@@ -204,7 +215,8 @@ Due to time limitation, here are some topics may be interesting and can be explo
   - They process audio using high-pass filter, and change it to sound-pressure level.
     - SyncWISE just filter the missing IMU data, and no such denoise pre-processings
   - For the 3-axis accelerometer data, they use the magnitude to represent it.
-    - SyncWISE uses the first principle component using PCA
+    - SyncWISE uses the first principle component using PCA.
+    
 
 ------
 # Project Timeline (to be updated dynamically)
@@ -228,6 +240,16 @@ Due to time limitation, here are some topics may be interesting and can be explo
 - Week 9
   - Modify SyncWISE to use CMACtivity
   - Train video model and fusion model
+- Week 10
+  - Modify SyncWISE to use CMACtivity
+  - Use the shifts predicted by SyncWISE
+  - Update Github repository
+  - Update the website
+- Final Week
+  - Evaluate the combined methods
+  - Prepare the final slides and presentation
+  - Update Github repository
+  - Update the website
 
 ------
 # Contribution (to be updated dynamically)
@@ -236,17 +258,24 @@ Gaofeng Dong
 - Survey of literature related to bad timestamp, especially SyncWISE and Time Awareness
 - Rerun the codes of SyncWISE and Time Awareness
 - Prepare Project Midterm Presentation
+- Mainly modify and adjust the SyncWISE
+- Analyze the results
+- Prepare the final Presentation
 
 Michael Lo
 - Design and maintenance of the project website and Github repository
 - Survey of literature related to bad timestamp, especially SyncWISE and Time Awareness
 - Rerun the codes of SyncWISE and Time Awareness
 - Prepare Project Midterm Presentation
-
+- Mainly modify and adjust the TimeAwareness
+- Analyze the results
+- Prepare the final Presentation
 
 ------
 ### Links
 Section with links to PDF of your final presentation slides, and any data sets not in your repo.
+
+Final presentation slides: <https://drive.google.com/file/d/1aI9SpPJOozm4B7X5t90oWrEIJIu8Onbk/view?usp=sharing>
 
 Train Dataset: <https://ucla.app.box.com/s/nn19mcbjm8qdmv6xnvbmviyicl5kjt0u>
 
