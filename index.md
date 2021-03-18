@@ -184,7 +184,7 @@ After further discussion with the professor, the sample length for CMActivity is
 ### SyncWise has more delays and computations when inferring
 According to our implementations, SyncWISE has at least these delays or computations during inferring:
 - Delay 1: Compute the optical flows of videos using PWCNet deep learning  model
-  - 7 hours for 13353 videos on 2.5GHz Intel CPU: 1.89s/video (45 frames, 64*64*3 pixels)
+  - Take 7 hours for 13353 videos on 2.5GHz Intel CPU: 1.89s/video (45 frames, 64\*64\*3 pixels)
 - Delay 2: Compute the IMU reliability data (Not used in this project)
 - Delay 3: Upsampling the IMU to match the video sampling rate
   - Cubic Spline Interpolation
