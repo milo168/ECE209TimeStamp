@@ -141,7 +141,9 @@ Here we take the max shift given by Syncwise and correct the shifted samples bef
 
 ------
 ### Analysis
-Despite the challenges to modify SyncWise to use CMACtivity, it still does relatively well. It is able to estimate shifts despite having to resample and rescale the dataset. However, SyncWise can only delay the point of where accuracy decreases. It still mostly falls into how sensitive the model is when dealing with shifts. As seen, non-augmented trained model is esensitive to even the slightest shifts. If SyncWise is unable to correct it completely, then the model will do well as the total remaining shift point. The best would then to be use an augmented trained model as it has robustness to the shifts. However, it only does well to the max shift seen. When combined with SyncWise, it is possible to have it correct it so that the net shift is within bounds.
+SyncWise is able to correct some shifts. However, SyncWise can only delay the point of where accuracy decreases. It still mostly falls into how sensitive the model is when dealing with shifts. As seen, non-augmented trained model is esensitive to even the slightest shifts. The best would then to be use an augmented trained model as it has robustness to the shifts. However, it only does well to the max shift seen. When combined with SyncWise, it is possible to have it correct it so that the net shift is within bounds.
+
+After further discussion with the professor, the sample length for CMActivity is too short for SyncWise to have drastic impact. It is also only correcting shifts within each sample (which is why we saw 8 frames shifts at most). Concatenating the samples and then doing the shift is not the same as just feeding the concatenated samples into SyncWise, something we did not realize. In addition, if samples were to be concatenated for give a feeling of a longer sequence, it wouln't have worked because each sample is independent of each other. They were not recorded in one sequence and then windowed to find the activities within them. For samples that were shifted more than 1.5 seconds, SyncWise was still able to give an estimate because during shifting, because the same activity but from different sample completely replaced the original, and the characteristics for similar activities should have similar features.
 
 #### SyncWise has more delays and computations when inferring
 According to our implementations, SyncWISE has at least these delays or computations during inferring:
@@ -155,12 +157,6 @@ According to our implementations, SyncWISE has at least these delays or computat
 - Delay 6: Weighted Gaussian kernel density estimate from N offsets
 
 In our experiments, Delay 3-6 is around 10 minutes for 1377 samples so per sample takes 0.44s. This means SyncWISE will take at least 2.33s to predict one offset even using 2.5GHz Intel CPU in our project. While TimeAwareness can process the inputs directly and has no such delays in inference. Therefore, SyncWISE may not be suitable for real-time/online tasks on resource-limited devices. 
-
-
-
-
-
-
 
 #### Future directions
 Due to time limitation, here are some topics may be interesting and can be explored in the future:
