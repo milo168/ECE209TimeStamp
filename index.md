@@ -58,9 +58,9 @@ Approach 4 (SyncWISE + TimeAwareness Robust):
 ## Exploring the Dataset
 Time Awareness uses the CMActivity dataset which contains 3 different sensor modalities. These modalities are video, audio, and inertial measurement units (IMU). Here we mainly focus on video and IMU data, because sound data here is not time series instead they are the extracted features like MFCC and power spectrogram. In this dataset, there are 7 human activities roughly distributed equally: Go Upstairs, Go Downstairs, Walk, Run, Jump, Wash Hand, Jumping Jack. There are roughly 11,976 train+validate samples and 1,377 test samples total. The size of each video series is (45, 64, 64, 3), where 45 is the number of frames and 64\*64\*3 is the size of each frame. The size of each IMU series is (40, 12), consisting of 40 samples from 4 sensors (acc_right gyro_right acc_left gyro_left) where each sensor has three directions. Here are the video and IMU example:
 
-<div align=center><img width="100" height="100" src="./Images/VideoExample.png"/></div>
+<div align=center><img width="200" height="200" src="./Images/VideoExample.png"/></div>
 
-<div align=center><img width="150" height="100" src="./Images/IMUExample.png"/></div>
+<div align=center><img width="300" height="200" src="./Images/IMUExample.png"/></div>
 
 It is assumed that the CMActvity dataset does not have any time shifts and so we will need to generate fake shifts ourselves. To do this, we pick the IMU modality to be shifted. To generate shifted samples, we first rearrange the samples into a long sequence. Inside the sequence contains windows of the activities of roughly 10 seconds. Then we shift the IMU samples. For the CMActivity dataset, we generated shifts ranging from 50ms to 2000ms.
 
@@ -112,7 +112,17 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 ------
 # Implementation and Results
 
-## SyncWISE
+## SyncWISE for CMActivies
+Since the codes provided by SyncWISE is mainly for their dataset, here we need to modify the codes to handle CMActivies dataset. We didn't expect that this cost most of the time in our project because we need modify almost every function in the codes.
+
+### Compute the optical flow of the video
+SyncWISE didn't use the video directly, and it calculate the optical flows from the video. In optical flows, each pixel provides a motion estimate in 𝑥 (horizontal) and 𝑦 (vertical) directions. Below figure is an example from the PWCNet work (<https://github.com/NVlabs/PWC-Net>), where the two adjacent frames generate one frame of optical flows in the same size.
+
+<div align=center><img width="400" height="200" src="./Images/OpticalFlowExample.png"/></div>
+
+
+
+
 
 ## Deep Learning Models
 We will keep the same IMU model used in Time Awareness. This model contains 2 convolution layers and 3 fully connected layers. For the video model we will be using C3D model. This model has 4 3d convolution layers and 3 fully connected layers. When independently training these models, the IMU accuracy is 91.65% and the video accuracy is 93.25%. We then build a fusion model using these 2. The fusion model has an additional fully connected layer and has an accuracy of 97.17%, showing that multi-modal models help improve accuracy.
