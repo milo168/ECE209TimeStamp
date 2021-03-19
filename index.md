@@ -1,6 +1,6 @@
 # Time Sync Study
 
-This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluating them using different metrics, and trying to propose new methods based on them to improve the performance.
+This is the project repository website for UCLA ECE 209 AS-2 Winter 2021 supervised by Prof. Mani B. Srivastava. The project will focus on exploring state-of-the-art methods which try to mitigate faulty time stamps on multimodal data, evaluat their individual impacts, and try to propose new methods based on them to improve the performance.
 
 <div align=center><img width="600" height="330" src="./Images/TimeShift_SyncWISE.png"/></div>
 
@@ -118,10 +118,10 @@ Though they provides most codes and dataset on their GitHub, it took some time t
 # Implementation and Results
 
 ## SyncWISE for CMActivies
-Since the codes provided by SyncWISE is mainly for their dataset, here we need to modify the codes to handle CMActivies dataset. We didn't expect that this cost most of the time in our project because we need modify almost every function in the codes.
+Since the codes provided by SyncWISE is mainly for their dataset, we need to modify the code to handle CMActivies dataset. We didn't expect that this would consume most of the time in our project because we needed to modify almost every function in the code.
 
 ### Compute the optical flows of the videos
-SyncWISE didn't use the video directly, and it calculate the optical flows from the video. In optical flows, each pixel provides a motion estimate in 𝑥 (horizontal) and 𝑦 (vertical) directions. Below figure is an example from the PWCNet work (<https://github.com/NVlabs/PWC-Net>), where the two adjacent frames generate one frame of optical flows in the same size.
+SyncWISE doesn't use the video directly. Instead it computes the optical flows from the video. In optical flow, each pixel provides a motion estimate in 𝑥 (horizontal) and 𝑦 (vertical) directions. Below figure is an example from the PWCNet work (<https://github.com/NVlabs/PWC-Net>), where the two adjacent frames generate one frame of optical flows in the same size.
 
 <div align=center><img width="400" height="200" src="./Images/OpticalFlowExample.png"/></div>
 
@@ -136,13 +136,13 @@ Here we use PWCNet to generate the optical flows as mentioned in SyncWISE paper.
 And it took around 7 hours to process the 13353 videos in CMActivities dataset to get their optical flows.
 
 ### Adjust SyncWISE to handle CMActivies dataset
-First, we modify the codes of SyncWISE and almost every function is corrected. The reasons are that CMActivies have different data format, no codes to compute IMU quality data, have problems when using floating point WindowSize and Stride, can handle only 3-axis IMU but now 4\*3-axis, the upsampling of IMU cannot be used here, load and store every results based on the start times, etc. We spent most of the time here. And below are the functions corrected by us:
+First, we modify the code of SyncWISE where almost every function is adjusted. The reasons are that CMActivies has different data format, no code to compute IMU quality data, has problems when using floating point WindowSize and Stride, can only handle 3-axis IMU but now we have 4\*3-axis, the upsampling of IMU cannot be used here, load and store every results based on the start times, etc. We spent most of the time here. And below are the functions corrected by us:
 
 <div align=center><img width="250" height="350" src="./Images/ModifiedFunctions.png"/></div>
 
 <center>Functions in SyncWISE modified by us</center>
 
-Second, we tune the hyperparameters because the length and data quality etc are different for CMActivies and original SyncWISE dataset. The main hyperparameters are: Window_size_sec, STRIDE_SEC, kde_num_offset, kde_max_offset and Kernel_var.
+Second, we tune the hyperparameters because the length and data quality are different for CMActivies. The main hyperparameters are: Window_size_sec, STRIDE_SEC, kde_num_offset, kde_max_offset and Kernel_var.
 
 
 ## Deep Learning Models
@@ -192,16 +192,16 @@ According to our implementations, SyncWISE has at least these delays or computat
 - Delay 5: Cross-correlation of N window pairs (N=32 in this project; 1403 in SyncWISE)
 - Delay 6: Weighted Gaussian kernel density estimate from N offsets
 
-In our experiments, Delay 3-6 is around 10 minutes for 1377 samples so per sample takes 0.44s. This means SyncWISE will take at least 2.33s to predict one offset even using 2.5GHz Intel CPU in our project. While TimeAwareness can process the inputs directly and has no such delays in inference. Therefore, SyncWISE may not be suitable for real-time/online tasks on resource-limited devices. 
+In our experiments, Delay 3-6 is around 10 minutes for 1377 samples so per sample takes 0.44s. This means SyncWISE will take at least 2.33s to predict one offset even using 2.5GHz Intel CPU in our project. While TimeAwareness can process the inputs directly and has very minimal delay in inference. Therefore, SyncWISE may not be suitable for real-time/online tasks on resource-limited devices. 
 
 ------
 # Future directions
-Due to time limitation, here are some topics may be interesting and can be explored in the future:
+Due to time limitation, here are some topics that can be explored in the future:
 - Explore Generalizing On Different Multimodal Data	
-  - Although SyncWISE and Time Awareness claim that their algorithms can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. Time Awareness uses audio and IMU data from CMActivities dataset. It will be interesting to explore how they generalize on different multimodal data. 	
-  - Since the experiments can take a long time even using many computation resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we may can explore multimodal data in the future.
+  - Although SyncWISE and Time Awareness claim that their algorithms can be further adapted to many other sensing modalities, they only evaluate their methods on limited sensor data. SyncWISE uses video and accelerometry data from S2S-Sync dataset and CMU-MMAC dataset. SyncWise has to be specifically tailored to be be able to handle a specific dataset while for a neural network, only the models have to change.
+  - Since the experiments can take a long time even using many compute resources, like for SyncWISE "It will take about 5 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for simulated shifts and "It will take 10 hours using 32 Intel i9-9980XE CPU @ 3.00GHz cores" for real shifts, we may can explore multimodal data in the future.
 - Explore how to predict time shifts using deep learning models
-  - Time Awareness uses deep learning models to handle multimodal data with faulty time stamps directly. It will be interesting to explore how to predict time shifts using deep learning models.
+  - Time Awareness uses deep learning models to handle multimodal data with faulty time stamps directly. It will be interesting to explore how to predict time shifts using deep learning models as a preprocessing step.
 
 ------
 # Related Work
